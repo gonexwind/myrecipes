@@ -13,6 +13,8 @@
         <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_joke.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_recipes.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/recipes_row_layout.xml" value="0.4166666666666667" />
+        <entry key="app/src/main/res/layout/recipes_row_layout_placeholder.xml" value="0.33" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
       </map>
     </option>
