@@ -1,6 +1,7 @@
 package com.gonexwind.myrecipes.recipes
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +9,14 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.gonexwind.myrecipes.MainViewModel
 import com.gonexwind.myrecipes.core.adapter.RecipesAdapter
 import com.gonexwind.myrecipes.core.util.NetworkResult
+import com.gonexwind.myrecipes.core.util.observeOnce
 import com.gonexwind.myrecipes.databinding.FragmentRecipesBinding
-import com.gonexwind.myrecipes.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
@@ -27,12 +31,32 @@ class RecipesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        requestApi()
+        readDatabase()
+    }
+
+    private fun setupRecyclerView() {
+        binding.recyclerview.adapter = recipesAdapter
+        showShimmerEffect(true)
+    }
+
+    private fun readDatabase() {
+        lifecycleScope.launch {
+            viewModel.readRecipes.observeOnce(viewLifecycleOwner) { database ->
+                if (database.isNotEmpty()) {
+                    Log.d("RecipesFragment", "requestDatabase Called")
+                    recipesAdapter.setData(database[0].foodRecipe)
+                    showShimmerEffect(false)
+                } else {
+                    requestApi()
+                }
+            }
+        }
     }
 
     private fun requestApi() {
         viewModel.apply {
             getRecipes(recipesViewModel.applyQueries())
+            Log.d("RecipesFragment", "requestApi Called")
             recipesResponse.observe(viewLifecycleOwner) { response ->
                 when (response) {
                     is NetworkResult.Error -> showError(response.message.toString())
@@ -46,11 +70,16 @@ class RecipesFragment : Fragment() {
         }
     }
 
-
-    private fun setupRecyclerView() {
-        binding.recyclerview.adapter = recipesAdapter
-        showShimmerEffect(true)
+    private fun loadDataFromCache() {
+        lifecycleScope.launch {
+            viewModel.readRecipes.observe(viewLifecycleOwner) { database ->
+                if (database.isNotEmpty()) {
+                    recipesAdapter.setData(database[0].foodRecipe)
+                }
+            }
+        }
     }
+
 
     private fun showShimmerEffect(isLoading: Boolean) {
         if (isLoading) {
@@ -65,8 +94,7 @@ class RecipesFragment : Fragment() {
 
     private fun showError(message: String) {
         showShimmerEffect(false)
-        binding.errorImageView.isVisible = true
-        binding.errorTextView.isVisible = true
+        loadDataFromCache()
         Toast.makeText(
             requireContext(),
             message,
