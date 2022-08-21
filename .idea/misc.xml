@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_error_placeholder.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_favorites.xml" value="0.2905" />
         <entry key="app/src/main/res/drawable/ic_filter.xml" value="0.2905" />
         <entry key="app/src/main/res/drawable/ic_joke.xml" value="0.2" />

@@ -46,9 +46,7 @@ class RecipesFragment : Fragment() {
                     Log.d("RecipesFragment", "requestDatabase Called")
                     recipesAdapter.setData(database[0].foodRecipe)
                     showShimmerEffect(false)
-                } else {
-                    requestApi()
-                }
+                } else requestApi()
             }
         }
     }
@@ -59,7 +57,13 @@ class RecipesFragment : Fragment() {
             Log.d("RecipesFragment", "requestApi Called")
             recipesResponse.observe(viewLifecycleOwner) { response ->
                 when (response) {
-                    is NetworkResult.Error -> showError(response.message.toString())
+                    is NetworkResult.Error -> {
+                        showError(response.message.toString())
+                        if (response.data == null) {
+                            binding.errorTextView.isVisible = true
+                            binding.errorImageView.isVisible = true
+                        }
+                    }
                     is NetworkResult.Loading -> showShimmerEffect(true)
                     is NetworkResult.Success -> {
                         showShimmerEffect(false)
@@ -73,9 +77,7 @@ class RecipesFragment : Fragment() {
     private fun loadDataFromCache() {
         lifecycleScope.launch {
             viewModel.readRecipes.observe(viewLifecycleOwner) { database ->
-                if (database.isNotEmpty()) {
-                    recipesAdapter.setData(database[0].foodRecipe)
-                }
+                if (database.isNotEmpty()) recipesAdapter.setData(database[0].foodRecipe)
             }
         }
     }

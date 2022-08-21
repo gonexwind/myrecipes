@@ -21,7 +21,10 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
 
         fun bind(result: Result) {
             binding.apply {
-                recipeImageView.load(result.image) { crossfade(600) }
+                recipeImageView.load(result.image) {
+                    crossfade(600)
+                    error(R.drawable.ic_error_placeholder)
+                }
                 titleTextView.text = result.title
                 descriptionTextView.text = result.summary
                 heartTextView.text = result.aggregateLikes.toString()
