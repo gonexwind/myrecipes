@@ -5,6 +5,7 @@
     android:id="@+id/recipesRowLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
     app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -80,7 +81,7 @@
             android:id="@+id/clockImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
             android:contentDescription="@string/content_description"
             app:layout_constraintStart_toEndOf="@id/heartImageView"
@@ -103,7 +104,7 @@
             android:id="@+id/leafImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
             android:contentDescription="@string/content_description"
             app:layout_constraintStart_toEndOf="@id/clockImageView"

@@ -2,9 +2,11 @@ package com.gonexwind.myrecipes.core.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.gonexwind.myrecipes.R
 import com.gonexwind.myrecipes.core.model.FoodRecipe
 import com.gonexwind.myrecipes.core.model.Result
 import com.gonexwind.myrecipes.core.util.RecipesDiffUtil
@@ -14,17 +16,18 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
 
     private var recipes = emptyList<Result>()
 
-    inner class ViewHolder(private val binding: RecipesRowLayoutBinding) :
+    inner class ViewHolder(val binding: RecipesRowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(result: Result) {
             binding.apply {
-                recipeImageView.load(result.image)
+                recipeImageView.load(result.image) {
+                    crossfade(600)
+                }
                 titleTextView.text = result.title
                 descriptionTextView.text = result.summary
                 heartTextView.text = result.aggregateLikes.toString()
                 clockTextView.text = result.readyInMinutes.toString()
-                leafTextView.text = result.vegan.toString()
             }
         }
 
@@ -37,7 +40,26 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(recipes[position])
+        val recipe = recipes[position]
+        holder.bind(recipe)
+
+        if (recipe.vegan) {
+            holder.binding.apply {
+                leafTextView.setTextColor(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.green
+                    )
+                )
+                leafImageView.setColorFilter(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.green
+                    )
+                )
+            }
+        }
+
     }
 
     override fun getItemCount(): Int = recipes.size
