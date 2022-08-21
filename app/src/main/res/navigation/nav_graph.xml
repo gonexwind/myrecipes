@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/recipesFragment">
     <fragment
         android:id="@+id/recipesFragment"
         android:name="com.gonexwind.myrecipes.recipes.RecipesFragment"
-        android:label="@string/recipes" />
+        android:label="@string/recipes" >
+        <action
+            android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
+            app:destination="@id/recipesBottomSheet" />
+    </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.gonexwind.myrecipes.favorites.FavoritesFragment"
@@ -15,4 +20,13 @@
         android:id="@+id/jokeFragment"
         android:name="com.gonexwind.myrecipes.joke.JokeFragment"
         android:label="@string/joke" />
+    <dialog
+        android:id="@+id/recipesBottomSheet"
+        android:name="com.gonexwind.myrecipes.recipes.RecipesBottomSheet"
+        android:label="recipes_bottom_sheet"
+        tools:layout="@layout/recipes_bottom_sheet" >
+        <action
+            android:id="@+id/action_recipesBottomSheet_to_recipesFragment"
+            app:destination="@id/recipesFragment" />
+    </dialog>
 </navigation>
