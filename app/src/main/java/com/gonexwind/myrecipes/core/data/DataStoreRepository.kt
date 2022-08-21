@@ -40,28 +40,25 @@ class DataStoreRepository @Inject constructor(
     }
 
     suspend fun saveMealAndDietType(
-        mealType: String,
-        mealTypeId: Int,
-        dietType: String,
-        dietTypeId: Int
+        mealType: String, mealTypeId: Int,
+        dietType: String, dietTypeId: Int
     ) {
-        dataStore.edit { prefs ->
-            prefs[selectedMealType] = mealType
-            prefs[selectedMealTypeId] = mealTypeId
-            prefs[selectedDietType] = dietType
-            prefs[selectedDietTypeId] = dietTypeId
+        dataStore.edit {
+            it[selectedMealType] = mealType
+            it[selectedMealTypeId] = mealTypeId
+            it[selectedDietType] = dietType
+            it[selectedDietTypeId] = dietTypeId
         }
     }
 
     val readMealAndDietType: Flow<MealAndDietType> = dataStore.data
-        .catch { exception ->
-            if (exception is IOException) emit(emptyPreferences()) else throw exception
-        }.map { prefs ->
+        .catch { if (it is IOException) emit(emptyPreferences()) else throw it }
+        .map {
             MealAndDietType(
-                prefs[selectedMealType] ?: DEFAULT_MEAL_TYPE,
-                prefs[selectedMealTypeId] ?: 0,
-                prefs[selectedDietType] ?: DEFAULT_DIET_TYPE,
-                prefs[selectedDietTypeId] ?: 0
+                it[selectedMealType] ?: DEFAULT_MEAL_TYPE,
+                it[selectedMealTypeId] ?: 0,
+                it[selectedDietType] ?: DEFAULT_DIET_TYPE,
+                it[selectedDietTypeId] ?: 0
             )
         }
 }

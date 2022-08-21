@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.gonexwind.myrecipes.MainViewModel
 import com.gonexwind.myrecipes.R
 import com.gonexwind.myrecipes.core.adapter.RecipesAdapter
@@ -25,6 +26,7 @@ class RecipesFragment : Fragment() {
 
     private var _binding: FragmentRecipesBinding? = null
     private val binding get() = _binding!!
+    private val args : RecipesFragmentArgs by navArgs()
     private val recipesAdapter by lazy { RecipesAdapter() }
     private val viewModel: MainViewModel by viewModels()
     private val recipesViewModel: RecipesViewModel by viewModels()
@@ -48,7 +50,7 @@ class RecipesFragment : Fragment() {
     private fun readDatabase() {
         lifecycleScope.launch {
             viewModel.readRecipes.observeOnce(viewLifecycleOwner) { database ->
-                if (database.isNotEmpty()) {
+                if (database.isNotEmpty() && !args.backFromBottomSheet) {
                     Log.d("RecipesFragment", "requestDatabase Called")
                     recipesAdapter.setData(database[0].foodRecipe)
                     showShimmerEffect(false)
