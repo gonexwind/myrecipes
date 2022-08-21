@@ -1,4 +1,4 @@
-package com.gonexwind.myrecipes.ui.recipes
+package com.gonexwind.myrecipes.recipes
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

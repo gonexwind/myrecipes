@@ -1,4 +1,4 @@
-package com.gonexwind.myrecipes.ui.recipes
+package com.gonexwind.myrecipes.recipes
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import com.gonexwind.myrecipes.core.adapter.RecipesAdapter
 import com.gonexwind.myrecipes.core.util.NetworkResult
 import com.gonexwind.myrecipes.databinding.FragmentRecipesBinding
-import com.gonexwind.myrecipes.ui.MainViewModel
+import com.gonexwind.myrecipes.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

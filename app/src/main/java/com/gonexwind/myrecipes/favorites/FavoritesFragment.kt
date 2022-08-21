@@ -1,12 +1,12 @@
-package com.gonexwind.myrecipes.ui.joke
+package com.gonexwind.myrecipes.favorites
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import com.gonexwind.myrecipes.databinding.FragmentJokeBinding
+import com.gonexwind.myrecipes.databinding.FragmentFavoritesBinding
 
-class JokeFragment : Fragment(){
-    private var _binding : FragmentJokeBinding? = null
+class FavoritesFragment : Fragment(){
+    private var _binding : FragmentFavoritesBinding? = null
     private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -18,7 +18,7 @@ class JokeFragment : Fragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentJokeBinding.inflate(layoutInflater, container, false)
+        _binding = FragmentFavoritesBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 

@@ -1,4 +1,4 @@
-package com.gonexwind.myrecipes.ui
+package com.gonexwind.myrecipes
 
 import android.app.Application
 import android.content.Context
