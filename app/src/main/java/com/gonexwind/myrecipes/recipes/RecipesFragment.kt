@@ -2,10 +2,10 @@ package com.gonexwind.myrecipes.recipes
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.SearchView.OnQueryTextListener
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -25,11 +25,11 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @AndroidEntryPoint
-class RecipesFragment : Fragment() {
+class RecipesFragment : Fragment(), OnQueryTextListener {
 
     private var _binding: FragmentRecipesBinding? = null
     private val binding get() = _binding!!
-    private val args : RecipesFragmentArgs by navArgs()
+    private val args: RecipesFragmentArgs by navArgs()
     private val recipesAdapter by lazy { RecipesAdapter() }
     private val viewModel: MainViewModel by viewModels()
     private val recipesViewModel: RecipesViewModel by viewModels()
@@ -38,6 +38,7 @@ class RecipesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setHasOptionsMenu(true)
         setupRecyclerView()
         recipesViewModel.readBackOnline.observe(viewLifecycleOwner) {
             recipesViewModel.backOnline = it
@@ -110,7 +111,6 @@ class RecipesFragment : Fragment() {
         }
     }
 
-
     private fun showShimmerEffect(isLoading: Boolean) {
         if (isLoading) {
             binding.shimmerView.isVisible = true
@@ -131,6 +131,26 @@ class RecipesFragment : Fragment() {
             Toast.LENGTH_SHORT
         ).show()
     }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.action_menu, menu)
+        val search = menu.findItem(R.id.searchMenu)
+        val searchView = search.actionView as SearchView
+        searchView.isSubmitButtonEnabled = true
+        searchView.setOnQueryTextListener(this)
+    }
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when (item.itemId) {
+//            R.id.searchMenu -> true
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//    }
+
+    override fun onQueryTextSubmit(p0: String?): Boolean = true
+
+    override fun onQueryTextChange(p0: String?): Boolean = true
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
