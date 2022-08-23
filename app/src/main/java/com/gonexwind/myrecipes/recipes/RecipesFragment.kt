@@ -103,6 +103,22 @@ class RecipesFragment : Fragment(), OnQueryTextListener {
         }
     }
 
+    private fun searchApiData(query: String) {
+        viewModel.apply {
+            searchRecipes(recipesViewModel.applySearchQuery(query))
+            searchRecipesResponse.observe(viewLifecycleOwner) { response ->
+                when (response) {
+                    is NetworkResult.Error -> showError(response.message.toString())
+                    is NetworkResult.Loading -> showShimmerEffect(true)
+                    is NetworkResult.Success -> {
+                        showShimmerEffect(false)
+                        response.data?.let { recipesAdapter.setData(it) }
+                    }
+                }
+            }
+        }
+    }
+
     private fun loadDataFromCache() {
         lifecycleScope.launch {
             viewModel.readRecipes.observe(viewLifecycleOwner) { database ->
@@ -140,17 +156,12 @@ class RecipesFragment : Fragment(), OnQueryTextListener {
         searchView.setOnQueryTextListener(this)
     }
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.searchMenu -> true
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
-
-    override fun onQueryTextSubmit(p0: String?): Boolean = true
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) searchApiData(query)
+        return true
+    }
 
     override fun onQueryTextChange(p0: String?): Boolean = true
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

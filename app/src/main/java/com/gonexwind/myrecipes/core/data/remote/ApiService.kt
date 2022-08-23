@@ -17,7 +17,7 @@ interface ApiService {
 
     @GET("/recipes/complexSearch")
     suspend fun searchRecipes(
-        @QueryMap searchQuery: Map<String, String>
+        @QueryMap queries: Map<String, String>
     ): Response<FoodRecipe>
 
     @GET("food/jokes/random")

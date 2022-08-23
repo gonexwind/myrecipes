@@ -9,6 +9,7 @@ import com.gonexwind.myrecipes.core.data.Repository
 import com.gonexwind.myrecipes.core.data.local.RecipesEntity
 import com.gonexwind.myrecipes.core.model.FoodRecipe
 import com.gonexwind.myrecipes.core.util.NetworkResult
+import dagger.hilt.android.internal.Contexts.getApplication
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -36,9 +37,14 @@ class MainViewModel @Inject constructor(
         RETROFIT
      */
     var recipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
+    var searchRecipesResponse: MutableLiveData<NetworkResult<FoodRecipe>> = MutableLiveData()
 
     fun getRecipes(queries: Map<String, String>) = viewModelScope.launch {
         getRecipeSafeCall(queries)
+    }
+
+    fun searchRecipes(queries: Map<String, String>) = viewModelScope.launch {
+        searchRecipeSafeCall(queries)
     }
 
     private suspend fun getRecipeSafeCall(queries: Map<String, String>) {
@@ -61,23 +67,38 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    private suspend fun searchRecipeSafeCall(queries: Map<String, String>) {
+        searchRecipesResponse.value = NetworkResult.Loading()
+        if (hasInternetConnection()) {
+            try {
+                val response = repository.remote.searchRecipes(queries)
+                searchRecipesResponse.value = handleFoodRecipesResponse(response)
+            } catch (e: Exception) {
+                searchRecipesResponse.value = NetworkResult.Error("Recipes not found")
+            }
+        } else {
+            searchRecipesResponse.value = NetworkResult.Error("No Internet Connection")
+        }
+    }
+
+
     private fun offlineCacheRecipes(foodRecipe: FoodRecipe) {
         val recipesEntity = RecipesEntity(foodRecipe)
         insertRecipes(recipesEntity)
     }
 
-    private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe> {
-        return when {
+    private fun handleFoodRecipesResponse(response: Response<FoodRecipe>): NetworkResult<FoodRecipe> =
+        when {
             response.message().toString().contains("timeout") -> NetworkResult.Error("Timeout")
             response.code() == 402 -> NetworkResult.Error("API Key Limited")
             response.body()!!.results.isEmpty() -> NetworkResult.Error("Recipes not found")
             response.isSuccessful -> {
                 val foodRecipes = response.body()
-                return NetworkResult.Success(foodRecipes!!)
+                NetworkResult.Success(foodRecipes!!)
             }
             else -> NetworkResult.Error(response.message())
+
         }
-    }
 
     private fun hasInternetConnection(): Boolean {
         val connectivityManager = getApplication<Application>()
