@@ -9,7 +9,7 @@
         <entry key="app/src/main/res/drawable/ic_joke.xml" value="0.2" />
         <entry key="app/src/main/res/drawable/ic_no_internet.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/ic_recipes.xml" value="0.2905" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_joke.xml" value="0.1" />
