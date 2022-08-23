@@ -15,12 +15,15 @@ import androidx.navigation.fragment.navArgs
 import com.gonexwind.myrecipes.MainViewModel
 import com.gonexwind.myrecipes.R
 import com.gonexwind.myrecipes.core.adapter.RecipesAdapter
+import com.gonexwind.myrecipes.core.util.NetworkListener
 import com.gonexwind.myrecipes.core.util.NetworkResult
 import com.gonexwind.myrecipes.core.util.observeOnce
 import com.gonexwind.myrecipes.databinding.FragmentRecipesBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @AndroidEntryPoint
 class RecipesFragment : Fragment() {
 
@@ -30,15 +33,32 @@ class RecipesFragment : Fragment() {
     private val recipesAdapter by lazy { RecipesAdapter() }
     private val viewModel: MainViewModel by viewModels()
     private val recipesViewModel: RecipesViewModel by viewModels()
+    private lateinit var networkListener: NetworkListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView()
-        readDatabase()
+        recipesViewModel.readBackOnline.observe(viewLifecycleOwner) {
+            recipesViewModel.backOnline = it
+        }
+
+        lifecycleScope.launch {
+            networkListener = NetworkListener()
+            networkListener.checkNetworkAvailability(requireContext())
+                .collect { status ->
+                    Log.d("NetworkListener", status.toString())
+                    recipesViewModel.networkStatus = status
+                    recipesViewModel.showNetworkStatus()
+                    readDatabase()
+                }
+        }
 
         binding.recipesFab.setOnClickListener {
-            findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+            if (recipesViewModel.networkStatus)
+                findNavController().navigate(R.id.action_recipesFragment_to_recipesBottomSheet)
+            else
+                recipesViewModel.showNetworkStatus()
         }
     }
 

@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
+import com.gonexwind.myrecipes.core.data.DataStoreRepository.PreferenceKeys.backOnline
 import com.gonexwind.myrecipes.core.data.DataStoreRepository.PreferenceKeys.selectedDietType
 import com.gonexwind.myrecipes.core.data.DataStoreRepository.PreferenceKeys.selectedDietTypeId
 import com.gonexwind.myrecipes.core.data.DataStoreRepository.PreferenceKeys.selectedMealType
 import com.gonexwind.myrecipes.core.data.DataStoreRepository.PreferenceKeys.selectedMealTypeId
 import com.gonexwind.myrecipes.core.util.Constants.DEFAULT_DIET_TYPE
 import com.gonexwind.myrecipes.core.util.Constants.DEFAULT_MEAL_TYPE
+import com.gonexwind.myrecipes.core.util.Constants.PREFERENCES_BACK_ONLINE
 import com.gonexwind.myrecipes.core.util.Constants.PREFERENCES_DIET_TYPE
 import com.gonexwind.myrecipes.core.util.Constants.PREFERENCES_DIET_TYPE_ID
 import com.gonexwind.myrecipes.core.util.Constants.PREFERENCES_MEAL_TYPE
@@ -37,6 +39,7 @@ class DataStoreRepository @Inject constructor(
         val selectedMealTypeId = intPreferencesKey(PREFERENCES_MEAL_TYPE_ID)
         val selectedDietType = stringPreferencesKey(PREFERENCES_DIET_TYPE)
         val selectedDietTypeId = intPreferencesKey(PREFERENCES_DIET_TYPE_ID)
+        val backOnline = booleanPreferencesKey(PREFERENCES_BACK_ONLINE)
     }
 
     suspend fun saveMealAndDietType(
@@ -60,6 +63,17 @@ class DataStoreRepository @Inject constructor(
                 it[selectedDietType] ?: DEFAULT_DIET_TYPE,
                 it[selectedDietTypeId] ?: 0
             )
+        }
+
+    suspend fun saveBackOnline(backOnline: Boolean) {
+        dataStore.edit { it[PreferenceKeys.backOnline] = backOnline }
+    }
+
+    val readBackOnline: Flow<Boolean> = dataStore.data
+        .catch { if (it is IOException) emit(emptyPreferences()) else throw it }
+        .map {
+            val backOnline = it[backOnline] ?: false
+            backOnline
         }
 }
 
