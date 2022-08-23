@@ -15,6 +15,9 @@
             android:name="backFromBottomSheet"
             app:argType="boolean"
             android:defaultValue="false" />
+        <action
+            android:id="@+id/action_recipesFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
@@ -33,4 +36,12 @@
             android:id="@+id/action_recipesBottomSheet_to_recipesFragment"
             app:destination="@id/recipesFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.gonexwind.myrecipes.detail.DetailFragment"
+        android:label="@string/detail" >
+        <argument
+            android:name="result"
+            app:argType="com.gonexwind.myrecipes.core.model.Result" />
+    </fragment>
 </navigation>

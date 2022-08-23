@@ -3,6 +3,7 @@ package com.gonexwind.myrecipes.core.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -11,6 +12,7 @@ import com.gonexwind.myrecipes.core.model.FoodRecipe
 import com.gonexwind.myrecipes.core.model.Result
 import com.gonexwind.myrecipes.core.util.RecipesDiffUtil
 import com.gonexwind.myrecipes.databinding.RecipesRowLayoutBinding
+import com.gonexwind.myrecipes.recipes.RecipesFragmentDirections
 
 class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
 
@@ -30,8 +32,12 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
                 heartTextView.text = result.aggregateLikes.toString()
                 clockTextView.text = result.readyInMinutes.toString()
             }
+            itemView.setOnClickListener {
+                itemView.findNavController().navigate(
+                    RecipesFragmentDirections.actionRecipesFragmentToDetailFragment(result)
+                )
+            }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

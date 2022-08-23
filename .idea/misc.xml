@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_checkmark.xml" value="0.114" />
         <entry key="app/src/main/res/drawable/ic_error_placeholder.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_favorites.xml" value="0.2905" />
         <entry key="app/src/main/res/drawable/ic_filter.xml" value="0.2905" />
@@ -11,14 +12,17 @@
         <entry key="app/src/main/res/drawable/ic_recipes.xml" value="0.2905" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_joke.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_overview.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_recipes.xml" value="0.22" />
         <entry key="app/src/main/res/layout/recipes_bottom_sheet.xml" value="0.20456707897240722" />
         <entry key="app/src/main/res/layout/recipes_row_layout.xml" value="0.22" />
         <entry key="app/src/main/res/layout/recipes_row_layout_placeholder.xml" value="0.33" />
         <entry key="app/src/main/res/menu/action_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/xml/fragment_overview_scene.xml" value="0.1" />
       </map>
     </option>
   </component>

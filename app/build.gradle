@@ -95,7 +95,4 @@ dependencies {
 
     // Shimmer
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
-
-    // Jsoup
-    implementation 'org.jsoup:jsoup:1.13.1'
 }

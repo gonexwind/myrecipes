@@ -9,6 +9,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -43,6 +44,13 @@ class MainActivity : AppCompatActivity() {
 
         // setup bottom nav bar
         binding.bottomNavigationView.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener {_, destination, _ ->
+            when(destination.id) {
+                R.id.detailFragment -> binding.bottomNavigationView.isVisible = false
+                else -> binding.bottomNavigationView.isVisible = true
+            }
+        }
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu): Boolean {
