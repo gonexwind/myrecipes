@@ -11,14 +11,14 @@ import com.gonexwind.myrecipes.R
 import com.gonexwind.myrecipes.core.model.FoodRecipe
 import com.gonexwind.myrecipes.core.model.Result
 import com.gonexwind.myrecipes.core.util.RecipesDiffUtil
-import com.gonexwind.myrecipes.databinding.RecipesRowLayoutBinding
+import com.gonexwind.myrecipes.databinding.ItemRecipesBinding
 import com.gonexwind.myrecipes.recipes.RecipesFragmentDirections
 
 class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
 
     private var recipes = emptyList<Result>()
 
-    inner class ViewHolder(val binding: RecipesRowLayoutBinding) :
+    inner class ViewHolder(val binding: ItemRecipesBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(result: Result) {
@@ -41,7 +41,7 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = RecipesRowLayoutBinding
+        val binding = ItemRecipesBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
@@ -50,23 +50,14 @@ class RecipesAdapter : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
         val recipe = recipes[position]
         holder.bind(recipe)
 
-        if (recipe.vegan) {
-            holder.binding.apply {
-                leafTextView.setTextColor(
-                    ContextCompat.getColor(
-                        holder.itemView.context,
-                        R.color.green
-                    )
-                )
-                leafImageView.setColorFilter(
-                    ContextCompat.getColor(
-                        holder.itemView.context,
-                        R.color.green
-                    )
-                )
-            }
+        if (recipe.vegan) holder.binding.apply {
+            leafTextView.setTextColor(
+                ContextCompat.getColor(holder.itemView.context, R.color.green)
+            )
+            leafImageView.setColorFilter(
+                ContextCompat.getColor(holder.itemView.context, R.color.green)
+            )
         }
-
     }
 
     override fun getItemCount(): Int = recipes.size

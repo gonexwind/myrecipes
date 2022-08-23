@@ -71,13 +71,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/recipes_row_layout_placeholder" />
+                <include layout="@layout/item_recipes_placeholder" />
 
-                <include layout="@layout/recipes_row_layout_placeholder" />
+                <include layout="@layout/item_recipes_placeholder" />
 
-                <include layout="@layout/recipes_row_layout_placeholder" />
+                <include layout="@layout/item_recipes_placeholder" />
 
-                <include layout="@layout/recipes_row_layout_placeholder" />
+                <include layout="@layout/item_recipes_placeholder" />
             </LinearLayout>
         </ScrollView>
     </com.facebook.shimmer.ShimmerFrameLayout>

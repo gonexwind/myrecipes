@@ -12,7 +12,7 @@ class RecipesDiffUtil<T>(
     override fun getNewListSize(): Int = new.size
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
-        old[oldItemPosition] == new[newItemPosition]
+        old[oldItemPosition] === new[newItemPosition]
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
         old[oldItemPosition] == new[newItemPosition]
