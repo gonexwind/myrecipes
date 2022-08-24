@@ -6,7 +6,7 @@ import com.gonexwind.myrecipes.core.util.Constants.FAVORITE_RECIPES_TABLE
 import com.gonexwind.myrecipes.core.model.Result
 
 @Entity(tableName = FAVORITE_RECIPES_TABLE)
-data class FavoriteEntity(
+class FavoriteEntity(
 
     @PrimaryKey(autoGenerate = true)
     val id: Int,

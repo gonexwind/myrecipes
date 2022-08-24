@@ -9,4 +9,7 @@
     <color name="lightGray">#F9F9F9</color>
     <color name="placeholderColor">@color/mediumGray</color>
     <color name="darkGray">#4B4B4B</color>
+
+    <color name="icon">@color/black</color>
+
 </resources>

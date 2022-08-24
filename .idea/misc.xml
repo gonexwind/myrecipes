@@ -25,6 +25,7 @@
         <entry key="app/src/main/res/layout/recipes_row_layout_placeholder.xml" value="0.33" />
         <entry key="app/src/main/res/menu/action_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/detail_menu.xml" value="0.28266913809082483" />
         <entry key="app/src/main/res/xml/fragment_overview_scene.xml" value="0.1" />
       </map>
     </option>
