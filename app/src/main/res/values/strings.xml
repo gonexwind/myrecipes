@@ -39,5 +39,6 @@
     <string name="cheap">Cheap</string>
     <string name="add_to_favorite">Add To Favorite</string>
     <string name="no_favorite_recipes">No Favorite Recipes</string>
+    <string name="delete_favorites">Delete Favorites</string>
 
 </resources>

@@ -24,7 +24,7 @@ class FavoritesFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        val adapter = FavoriteAdapter()
+        val adapter = FavoriteAdapter(requireActivity())
         mainViewModel.readFavoriteRecipes.observe(viewLifecycleOwner) {
             adapter.setData(it)
             if (it.isEmpty()) {
