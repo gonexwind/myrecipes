@@ -6,10 +6,10 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.gonexwind.myrecipes.core.data.Repository
-import com.gonexwind.myrecipes.core.data.local.RecipesEntity
+import com.gonexwind.myrecipes.core.data.local.entity.FavoriteEntity
+import com.gonexwind.myrecipes.core.data.local.entity.RecipesEntity
 import com.gonexwind.myrecipes.core.model.FoodRecipe
 import com.gonexwind.myrecipes.core.util.NetworkResult
-import dagger.hilt.android.internal.Contexts.getApplication
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,13 +25,30 @@ class MainViewModel @Inject constructor(
     /*
         ROOM DATABASE
      */
-    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readDatabase().asLiveData()
+    val readRecipes: LiveData<List<RecipesEntity>> = repository.local.readRecipes().asLiveData()
 
     private fun insertRecipes(recipesEntity: RecipesEntity) =
         viewModelScope.launch(Dispatchers.IO) {
             repository.local.insertRecipes(recipesEntity)
         }
 
+    val readFavoriteRecipes: LiveData<List<FavoriteEntity>> =
+        repository.local.readFavoriteRecipes().asLiveData()
+
+    private fun insertFavoriteRecipes(favoriteEntity: FavoriteEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.insertFavoriteRecipes(favoriteEntity)
+        }
+
+    private fun deleteFavoriteRecipes(favoriteEntity: FavoriteEntity) =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteFavoriteRecipe(favoriteEntity)
+        }
+
+    private fun deleteAllFavoriteRecipes() =
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.local.deleteAllFavoriteRecipes()
+        }
 
     /*
         RETROFIT
