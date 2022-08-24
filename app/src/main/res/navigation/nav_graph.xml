@@ -22,7 +22,11 @@
     <fragment
         android:id="@+id/favoritesFragment"
         android:name="com.gonexwind.myrecipes.favorites.FavoritesFragment"
-        android:label="@string/favorites" />
+        android:label="@string/favorites" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/jokeFragment"
         android:name="com.gonexwind.myrecipes.joke.JokeFragment"

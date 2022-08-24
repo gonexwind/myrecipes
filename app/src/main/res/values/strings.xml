@@ -38,6 +38,6 @@
     <string name="healthy">Healthy</string>
     <string name="cheap">Cheap</string>
     <string name="add_to_favorite">Add To Favorite</string>
-    <string name="no_favorite_recipes">No Favorite_recipes</string>
+    <string name="no_favorite_recipes">No Favorite Recipes</string>
 
 </resources>

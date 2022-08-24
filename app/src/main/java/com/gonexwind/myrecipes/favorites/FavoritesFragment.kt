@@ -2,6 +2,7 @@ package com.gonexwind.myrecipes.favorites
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.gonexwind.myrecipes.MainViewModel
@@ -19,9 +20,17 @@ class FavoritesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView() {
         val adapter = FavoriteAdapter()
         mainViewModel.readFavoriteRecipes.observe(viewLifecycleOwner) {
             adapter.setData(it)
+            if (it.isEmpty()) {
+                binding.noDataTextView.isVisible = true
+                binding.noDataImageView.isVisible = true
+            }
         }
         binding.favoriteRecipesRecyclerView.adapter = adapter
     }

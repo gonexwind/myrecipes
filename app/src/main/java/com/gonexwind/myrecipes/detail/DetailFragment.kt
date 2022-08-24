@@ -60,8 +60,8 @@ class DetailFragment : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.favoriteMenu && !recipeSaved) saveToFavorites(item)
-        if (item.itemId == R.id.favoriteMenu && recipeSaved) removeFromFavorite(item)
-        return super.onOptionsItemSelected(item)
+        else if (item.itemId == R.id.favoriteMenu && recipeSaved) removeFromFavorite(item)
+        return true
     }
 
     private fun checkSavedRecipes(menuItem: MenuItem) {
@@ -71,6 +71,7 @@ class DetailFragment : Fragment() {
                     if (it.result.recipeId == args.result.recipeId) {
                         changeMenuItemColor(menuItem, R.color.yellow)
                         savedRecipeId = it.id
+                        recipeSaved = true
                     } else changeMenuItemColor(menuItem, R.color.icon)
                 }
             } catch (e: Exception) {
@@ -83,7 +84,7 @@ class DetailFragment : Fragment() {
         val favorite = FavoriteEntity(0, args.result)
         viewModel.insertFavoriteRecipes(favorite)
         changeMenuItemColor(item, R.color.yellow)
-        showSnackBar("Recipe Saved")
+        showSnackBar("Recipe Saved.")
         recipeSaved = true
     }
 

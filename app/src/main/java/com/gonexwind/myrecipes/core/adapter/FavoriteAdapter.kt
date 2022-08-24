@@ -3,6 +3,7 @@ package com.gonexwind.myrecipes.core.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -10,6 +11,9 @@ import com.gonexwind.myrecipes.R
 import com.gonexwind.myrecipes.core.data.local.entity.FavoriteEntity
 import com.gonexwind.myrecipes.databinding.ItemRecipesBinding
 import com.gonexwind.myrecipes.core.util.RecipesDiffUtil
+import com.gonexwind.myrecipes.detail.DetailFragment
+import com.gonexwind.myrecipes.favorites.FavoritesFragmentDirections
+import com.gonexwind.myrecipes.recipes.RecipesFragmentDirections
 
 class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
 
@@ -39,6 +43,13 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
                 )
                 leafImageView.setColorFilter(
                     ContextCompat.getColor(holder.itemView.context, R.color.green)
+                )
+            }
+        }
+        holder.itemView.apply {
+            setOnClickListener {
+                findNavController().navigate(
+                    FavoritesFragmentDirections.actionFavoritesFragmentToDetailFragment(recipe)
                 )
             }
         }
