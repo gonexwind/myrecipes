@@ -33,19 +33,10 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
         val navController = navHostFragment.navController
 
-        // setup app bar
-        appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.recipesFragment,
-                R.id.favoritesFragment,
-                R.id.jokeFragment
-            )
-        )
-//        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
         // setup bottom nav bar
         binding.bottomNavigationView.setupWithNavController(navController)
+        appBarConfiguration = AppBarConfiguration(binding.bottomNavigationView.menu)
+        setupActionBarWithNavController(navController, appBarConfiguration)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
