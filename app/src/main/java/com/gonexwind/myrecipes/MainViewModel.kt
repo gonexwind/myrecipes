@@ -7,9 +7,7 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.gonexwind.myrecipes.core.data.Repository
 import com.gonexwind.myrecipes.core.data.local.entity.FavoriteEntity
-import com.gonexwind.myrecipes.core.data.local.entity.FoodJokeEntity
 import com.gonexwind.myrecipes.core.data.local.entity.RecipesEntity
-import com.gonexwind.myrecipes.core.model.FoodJoke
 import com.gonexwind.myrecipes.core.model.FoodRecipe
 import com.gonexwind.myrecipes.core.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
