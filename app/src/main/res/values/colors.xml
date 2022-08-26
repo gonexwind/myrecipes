@@ -11,5 +11,6 @@
     <color name="darkGray">#4B4B4B</color>
 
     <color name="icon">@color/black</color>
-
+    <color name="card_selected">#E6DEFF</color>
+    <color name="card_background">@color/cardview_light_background</color>
 </resources>

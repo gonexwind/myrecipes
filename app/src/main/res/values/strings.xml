@@ -40,5 +40,6 @@
     <string name="add_to_favorite">Add To Favorite</string>
     <string name="no_favorite_recipes">No Favorite Recipes</string>
     <string name="delete_favorites">Delete Favorites</string>
+    <string name="delete_all_favorites">Delete All Favorites</string>
 
 </resources>

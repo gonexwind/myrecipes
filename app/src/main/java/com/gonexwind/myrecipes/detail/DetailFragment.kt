@@ -3,6 +3,7 @@ package com.gonexwind.myrecipes.detail
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -48,20 +49,21 @@ class DetailFragment : Fragment() {
         }
     }
 
-
     @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.detail_menu, menu)
         val menuItem = menu.findItem(R.id.favoriteMenu)
         checkSavedRecipes(menuItem)
+
     }
 
     @Deprecated("Deprecated in Java")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.favoriteMenu && !recipeSaved) saveToFavorites(item)
         else if (item.itemId == R.id.favoriteMenu && recipeSaved) removeFromFavorite(item)
-        return true
+        return super.onOptionsItemSelected(item)
     }
+
 
     private fun checkSavedRecipes(menuItem: MenuItem) {
         viewModel.readFavoriteRecipes.observe(requireActivity()) { favorites ->
