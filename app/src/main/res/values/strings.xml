@@ -42,5 +42,6 @@
     <string name="delete_favorites">Delete Favorites</string>
     <string name="delete_all_favorites">Delete All Favorites</string>
     <string name="error">Error</string>
+    <string name="share">Share</string>
 
 </resources>

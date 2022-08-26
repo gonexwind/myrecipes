@@ -53,7 +53,6 @@ class DetailFragment : Fragment() {
         inflater.inflate(R.menu.detail_menu, menu)
         val menuItem = menu.findItem(R.id.favoriteMenu)
         checkSavedRecipes(menuItem)
-
     }
 
     @Deprecated("Deprecated in Java")

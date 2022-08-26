@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/ic_joke.xml" value="0.2" />
         <entry key="app/src/main/res/drawable/ic_no_internet.xml" value="0.2495" />
         <entry key="app/src/main/res/drawable/ic_recipes.xml" value="0.2905" />
+        <entry key="app/src/main/res/drawable/ic_share.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.1" />
@@ -30,6 +31,7 @@
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
         <entry key="app/src/main/res/menu/detail_menu.xml" value="0.16" />
         <entry key="app/src/main/res/menu/favorite_menu.xml" value="0.22" />
+        <entry key="app/src/main/res/menu/joke_menu.xml" value="0.28266913809082483" />
         <entry key="app/src/main/res/xml/fragment_overview_scene.xml" value="0.1" />
       </map>
     </option>
