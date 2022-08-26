@@ -2,6 +2,7 @@ package com.gonexwind.myrecipes.core.data.local
 
 import androidx.room.*
 import com.gonexwind.myrecipes.core.data.local.entity.FavoriteEntity
+import com.gonexwind.myrecipes.core.data.local.entity.FoodJokeEntity
 import com.gonexwind.myrecipes.core.data.local.entity.RecipesEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -25,4 +26,10 @@ interface RecipesDao {
 
     @Query("DELETE FROM favorite_recipes_table")
     suspend fun deleteFavoriteRecipes()
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertFoodJoke(foodJokeEntity: FoodJokeEntity)
+
+    @Query("SELECT * FROM food_joke_table")
+    fun readFoodJoke(): Flow<List<FoodJokeEntity>>
 }

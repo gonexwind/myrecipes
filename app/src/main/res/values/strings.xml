@@ -41,5 +41,6 @@
     <string name="no_favorite_recipes">No Favorite Recipes</string>
     <string name="delete_favorites">Delete Favorites</string>
     <string name="delete_all_favorites">Delete All Favorites</string>
+    <string name="error">Error</string>
 
 </resources>

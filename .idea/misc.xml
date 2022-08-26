@@ -17,7 +17,7 @@
         <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_ingredient.xml" value="0.2501068832834545" />
         <entry key="app/src/main/res/layout/fragment_instruction.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_joke.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_joke.xml" value="0.16" />
         <entry key="app/src/main/res/layout/fragment_overview.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_recipes.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_favorite_recipes.xml" value="0.18" />

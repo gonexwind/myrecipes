@@ -1,6 +1,7 @@
 package com.gonexwind.myrecipes.core.data.local
 
 import com.gonexwind.myrecipes.core.data.local.entity.FavoriteEntity
+import com.gonexwind.myrecipes.core.data.local.entity.FoodJokeEntity
 import com.gonexwind.myrecipes.core.data.local.entity.RecipesEntity
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -28,4 +29,11 @@ class LocalDataSource @Inject constructor(
     suspend fun deleteAllFavoriteRecipes() {
         recipesDao.deleteFavoriteRecipes()
     }
+
+    suspend fun insertFoodJoke(foodJokeEntity: FoodJokeEntity) {
+        recipesDao.insertFoodJoke(foodJokeEntity)
+    }
+
+    fun readFoodJoke(): Flow<List<FoodJokeEntity>> = recipesDao.readFoodJoke()
+
 }

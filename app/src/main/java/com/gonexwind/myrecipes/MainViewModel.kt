@@ -7,7 +7,9 @@ import android.net.NetworkCapabilities
 import androidx.lifecycle.*
 import com.gonexwind.myrecipes.core.data.Repository
 import com.gonexwind.myrecipes.core.data.local.entity.FavoriteEntity
+import com.gonexwind.myrecipes.core.data.local.entity.FoodJokeEntity
 import com.gonexwind.myrecipes.core.data.local.entity.RecipesEntity
+import com.gonexwind.myrecipes.core.model.FoodJoke
 import com.gonexwind.myrecipes.core.model.FoodRecipe
 import com.gonexwind.myrecipes.core.util.NetworkResult
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -64,6 +66,7 @@ class MainViewModel @Inject constructor(
         searchRecipeSafeCall(queries)
     }
 
+
     private suspend fun getRecipeSafeCall(queries: Map<String, String>) {
         recipesResponse.value = NetworkResult.Loading()
         if (hasInternetConnection()) {
@@ -79,9 +82,7 @@ class MainViewModel @Inject constructor(
             } catch (e: Exception) {
                 recipesResponse.value = NetworkResult.Error("Recipes not found")
             }
-        } else {
-            recipesResponse.value = NetworkResult.Error("No Internet Connection")
-        }
+        } else recipesResponse.value = NetworkResult.Error("No Internet Connection")
     }
 
     private suspend fun searchRecipeSafeCall(queries: Map<String, String>) {
@@ -93,11 +94,8 @@ class MainViewModel @Inject constructor(
             } catch (e: Exception) {
                 searchRecipesResponse.value = NetworkResult.Error("Recipes not found")
             }
-        } else {
-            searchRecipesResponse.value = NetworkResult.Error("No Internet Connection")
-        }
+        } else searchRecipesResponse.value = NetworkResult.Error("No Internet Connection")
     }
-
 
     private fun offlineCacheRecipes(foodRecipe: FoodRecipe) {
         val recipesEntity = RecipesEntity(foodRecipe)
@@ -114,7 +112,6 @@ class MainViewModel @Inject constructor(
                 NetworkResult.Success(foodRecipes!!)
             }
             else -> NetworkResult.Error(response.message())
-
         }
 
     private fun hasInternetConnection(): Boolean {
