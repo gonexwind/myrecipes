@@ -1,8 +1,8 @@
-<img src="media/logo.png" alt="next hotel logo" width="200"/>
+<img src="media/logo.png" alt="next hotel logo" width="100"/>
 
 # **MyRecipes**
 
-#### Let's Start Our Labs!
+### Let's Start Our Labs!
 
 This application is purpose to help user find food or drink recipes.<br><br>
 [![Platform](https://img.shields.io/badge/platform-Android-green.svg)](http://developer.android.com/index.html) 
@@ -24,11 +24,9 @@ This application is purpose to help user find food or drink recipes.<br><br>
 ## 📸 Screenshots
 ||||
 |:----------------------------------------:|:-----------------------------------------:|:-----------------------------------------: |
-| ![](media/home.jpg) | ![](media/search.jpg) | ![](media/filter.jpg) |
+| ![](media/home.jpg) | ![](media/light.jpg) | ![](media/filter.jpg) |
 | ![](media/detail.jpg) | ![](media/ingredients.jpg) | ![](media/instruction.jpg) |
 | ![](media/favorite.jpg) | ![](media/selected.jpg) | ![](media/joke.jpg) |
-| ![](media/light.jpg) |
-
 
 ## Built With 🛠
 - Kotlin
