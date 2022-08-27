@@ -10,7 +10,7 @@ This application is purpose to help user find food or drink recipes.<br><br>
 
 ## Download App
 
-[![NEXTHOTEL](https://img.shields.io/badge/MyRecipes-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Next-Hotel/NextHotel-APP/releases/download/v1.0.0/app-debug.apk)
+[![NEXTHOTEL](https://img.shields.io/badge/MyRecipes-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/gonexwind/myrecipes/releases/download/v1.0.0/myrecipes-v1.0.0.apk)
 
 ## Features
 - Explore Recipes
