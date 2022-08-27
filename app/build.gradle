@@ -23,6 +23,8 @@ android {
         properties.load(project.rootProject.file("local.properties").newDataInputStream())
 
         buildConfigField "String", "API_KEY", "\"${properties.getProperty("API_KEY")}\""
+        buildConfigField "String", "BASE_URL", "\"${properties.getProperty("BASE_URL")}\""
+        buildConfigField "String", "BASE_IMAGE_URL", "\"${properties.getProperty("BASE_IMAGE_URL")}\""
     }
 
     buildTypes {

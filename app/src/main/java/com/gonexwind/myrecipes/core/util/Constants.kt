@@ -1,8 +1,10 @@
 package com.gonexwind.myrecipes.core.util
 
+import com.gonexwind.myrecipes.BuildConfig
+
 object Constants {
-    const val BASE_URL = "https://api.spoonacular.com"
-    const val BASE_IMAGE_URL = "https://spoonacular.com/cdn/ingredients_100x100/"
+    const val BASE_URL = BuildConfig.BASE_URL
+    const val BASE_IMAGE_URL = BuildConfig.BASE_IMAGE_URL
 
     const val RECIPE_RESULT_KEY = "recipeBundle"
 
