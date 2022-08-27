@@ -27,7 +27,7 @@ This application is purpose to help user find food or drink recipes.<br><br>
 | ![](media/home.jpg) | ![](media/search.jpg) | ![](media/filter.jpg) |
 | ![](media/detail.jpg) | ![](media/ingredients.jpg) | ![](media/instruction.jpg) |
 | ![](media/favorite.jpg) | ![](media/selected.jpg) | ![](media/joke.jpg) |
-| ![](media/light.jpg) | ![](media/selected.jpg) | ![](media/joke.jpg) |
+| ![](media/light.jpg) |
 
 
 ## Built With 🛠
